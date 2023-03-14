@@ -30,7 +30,9 @@ Luego deben levantar las aplicacion
 
 ### En caso de desplegar en Kubernetes
 
-    P
+    Pueden utilizar los manifiesto de este repositorio.
+    A tener en cuenta que las variables a utilizar en frontend en este caso debe ser igual al nombre del servicio del recurso correspondiente.
+
 
 
 
