@@ -1,34 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: ms-frontend-deploy
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: ms-frontend
   template:
     metadata:
       labels:
-        app: myapp
+        app: ms-frontend
     spec:
       containers:
-      - name: myapp
-        image: <Image>
+      - name: ms-frontend
+        image: tiztan21/ms-frontend:01
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "50Mi"
+            cpu: "100m"
         ports:
-        - containerPort: <Port>
-
+        - containerPort: 3000
+        env:
+          - name: PRODUCTS
+            value: products-service
+          - name: SHOPPING
+            value: shopping-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: frontend-service
 spec:
   selector:
-    app: myapp
+    app: ms-frontend
   ports:
-  - port: <Port>
-    targetPort: <Target Port>
+  - port: 3000
+    targetPort: 3000
+  type: NodePort
