@@ -1,33 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: ms-shopping-deploy
 spec:
   selector:
     matchLabels:
-      app: myapp
+      app: ms-shopping
   template:
     metadata:
       labels:
-        app: myapp
+        app: ms-shopping
     spec:
       containers:
-      - name: myapp
-        image: <Image>
+      - name: ms-shopping
+        image: tiztan21/ms-shopping-cart:01
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "50Mi"
+            cpu: "100m"
         ports:
-        - containerPort: <Port>
+        - containerPort: 3001
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: shopping-service
 spec:
   selector:
-    app: myapp
+    app: ms-shopping
   ports:
-  - port: <Port>
-    targetPort: <Target Port>
+  - port: 3002
+    targetPort: 3002
+    protocol: TCP

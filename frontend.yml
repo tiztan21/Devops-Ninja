@@ -20,7 +20,11 @@ spec:
             cpu: "100m"
         ports:
         - containerPort: 3000
-
+        env:
+          - name: PRODUCTS
+            value: products-service
+          - name: SHOPPING
+            value: shopping-service
 ---
 apiVersion: v1
 kind: Service
